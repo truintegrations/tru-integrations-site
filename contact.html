@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact | Tru Integrations</title>
+  <meta name="description" content="Get in touch with Tru Integrations or book a free discovery call." />
+  <meta property="og:title" content="Contact | Tru Integrations" />
+  <meta property="og:description" content="Automation and integration services for growing businesses." />
+  <meta property="og:image" content="/assets/banner.jpg" />
+  <meta name="theme-color" content="#1e3a2b" />
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="container nav" aria-label="Main">
+      <a class="brand" href="/" aria-label="Tru Integrations home"><span class="wm-top">TRU</span><span class="wm-sub">INTEGRATIONS</span></a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/services.html">Services</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/contact.html" aria-current="page">Contact</a></li>
+        <li><a class="btn btn-primary" data-book href="/contact.html">Book a Call</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero center">
+      <div class="container">
+        <span class="eyebrow">Contact</span>
+        <h1>Let's talk about your business</h1>
+        <p class="lede">Send a message or book a time that works for you. We reply within one business day.</p>
+        <div class="ornament"><span></span><i></i><span></span></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container contact-grid">
+        <div class="card form-card">
+          <h2 style="font-size:2rem">Send us a message</h2>
+          <!-- Netlify detects this form automatically on deploy (data-netlify="true").
+               Submissions can then be forwarded to Zapier / Make / n8n / email.
+               See js/config.js to also post directly to a webhook. -->
+          <form id="contact-form" name="contact" method="POST" action="/thanks.html"
+                data-netlify="true" netlify-honeypot="bot-field" novalidate>
+            <input type="hidden" name="form-name" value="contact" />
+            <p class="hidden"><label>Leave this empty <input name="bot-field" /></label></p>
+
+            <div class="field-row">
+              <div class="field">
+                <label for="name">Full name</label>
+                <input id="name" name="name" type="text" autocomplete="name" required />
+              </div>
+              <div class="field">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" autocomplete="email" required />
+              </div>
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label for="company">Company <span class="opt">(optional)</span></label>
+                <input id="company" name="company" type="text" autocomplete="organization" />
+              </div>
+              <div class="field">
+                <label for="phone">Phone <span class="opt">(optional)</span></label>
+                <input id="phone" name="phone" type="tel" autocomplete="tel" />
+              </div>
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label for="service">What can we help with?</label>
+                <select id="service" name="service" required>
+                  <option value="">Select one…</option>
+                  <option>Workflow Automation</option>
+                  <option>System Integrations</option>
+                  <option>AI-Powered Processes</option>
+                  <option>Audit, Support &amp; Optimization</option>
+                  <option>Not sure yet</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="budget">Budget <span class="opt">(optional)</span></label>
+                <select id="budget" name="budget">
+                  <option value="">Prefer not to say</option>
+                  <option>Under $1,000</option>
+                  <option>$1,000 – $5,000</option>
+                  <option>$5,000 – $15,000</option>
+                  <option>$15,000+</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="message">Tell us about your project</label>
+              <textarea id="message" name="message" placeholder="What tools do you use, and what's taking up too much time?" required></textarea>
+            </div>
+
+            <button class="btn btn-primary" type="submit">Send message</button>
+            <div class="form-status" role="status" aria-live="polite"></div>
+          </form>
+        </div>
+
+        <aside>
+          <div class="card side-card">
+            <h3>Prefer to talk?</h3>
+            <p>Book a free 30-minute discovery call. We'll learn about your business and identify your best automation opportunities.</p>
+            <a class="btn btn-gold" data-book href="#book">Book a call</a>
+          </div>
+          <div class="card side-card">
+            <h3>Reach us directly</h3>
+            <ul class="contact-list">
+              <li>Email: <a href="mailto:hello@yourdomain.com">hello@yourdomain.com</a></li>
+              <li>Hours: Monday – Friday, 9am – 5pm</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+
+      <div class="container" id="book">
+        <div class="center" style="margin-top:80px">
+          <span class="eyebrow">Schedule</span>
+          <h2>Pick a time</h2>
+        </div>
+        <div id="cal-inline" class="cal-embed"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">TRU<small>INTEGRATIONS</small></div>
+          <p style="margin-top:18px;max-width:340px">Automation and integration services that help businesses run smoother, faster and smarter.</p>
+        </div>
+        <div>
+          <h4>Pages</h4>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="mailto:hello@yourdomain.com">hello@yourdomain.com</a></li>
+            <li><a data-book href="/contact.html">Book a call</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">&copy; <span data-year></span> Tru Integrations. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script src="/js/config.js"></script>
+  <script src="/js/main.js"></script>
+</body>
+</html>
