@@ -138,9 +138,10 @@ p { margin: 0 0 1em; }
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(244, 236, 224, 0.94);
-  backdrop-filter: saturate(140%) blur(8px);
-  border-bottom: 1px solid var(--line);
+  background: rgba(244, 236, 224, 0.5);
+  backdrop-filter: saturate(160%) blur(7px);
+  -webkit-backdrop-filter: saturate(160%) blur(7px);
+  border-bottom: 1px solid rgba(221, 210, 191, 0.7);
 }
 .nav {
   display: flex;
