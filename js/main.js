@@ -16,6 +16,66 @@
     el.textContent = new Date().getFullYear();
   });
 
+  /* ---------- Offer pop-up ---------- */
+  // Shown once per browser session, 1 second after the page loads.
+  // Pages with <body data-no-offer> (thanks, 404) skip it.
+  function seenOffer() {
+    try { return sessionStorage.getItem("tru-offer-seen") === "1"; } catch (e) { return false; }
+  }
+  function markOfferSeen() {
+    try { sessionStorage.setItem("tru-offer-seen", "1"); } catch (e) {}
+  }
+
+  if (!document.body.hasAttribute("data-no-offer") && !seenOffer()) {
+    var offer = document.createElement("div");
+    offer.className = "offer";
+    offer.setAttribute("role", "dialog");
+    offer.setAttribute("aria-modal", "true");
+    offer.setAttribute("aria-labelledby", "offer-title");
+    offer.hidden = true;
+    offer.innerHTML =
+      '<div class="offer-backdrop" data-offer-close></div>' +
+      '<div class="offer-panel" tabindex="-1">' +
+        '<button class="offer-x" type="button" aria-label="Close" data-offer-close>&times;</button>' +
+        '<img class="offer-logo" src="/assets/logo.png" alt="Tru Integrations" width="1364" height="409" />' +
+        '<span class="eyebrow">Our offer to you</span>' +
+        '<h2 id="offer-title">See the value before you commit.</h2>' +
+        '<ol class="offer-steps">' +
+          '<li><strong>Book a call.</strong> A free 15-minute conversation about your business.</li>' +
+          '<li><strong>We map it out.</strong> Together we pinpoint where your time is going.</li>' +
+          '<li><strong>See it come to life.</strong> We show you the idea working.</li>' +
+        '</ol>' +
+        '<p class="offer-guarantee">Zero risk. No obligation.</p>' +
+        '<a class="btn btn-gold" data-book href="/contact.html">Book a Call</a>' +
+        '<button class="offer-dismiss" type="button" data-offer-close>No thanks</button>' +
+      '</div>';
+    document.body.appendChild(offer);
+
+    var lastFocus = null;
+    function closeOffer() {
+      offer.classList.remove("open");
+      setTimeout(function () { offer.hidden = true; }, 250);
+      document.removeEventListener("keydown", onOfferKey);
+      if (lastFocus) lastFocus.focus();
+    }
+    function onOfferKey(e) {
+      if (e.key === "Escape") closeOffer();
+    }
+    offer.addEventListener("click", function (e) {
+      if (e.target.closest("[data-offer-close]") || e.target.closest("[data-book]")) closeOffer();
+    });
+
+    setTimeout(function () {
+      lastFocus = document.activeElement;
+      offer.hidden = false;
+      // Next frame so the fade-in transition runs
+      requestAnimationFrame(function () { offer.classList.add("open"); });
+      offer.querySelector(".offer-panel").focus();
+      document.addEventListener("keydown", onOfferKey);
+      markOfferSeen();
+    }, 1000);
+  }
+
   /* ---------- Cal.com ---------- */
   // Every "Book a call" button gets the real Cal.com URL as a fallback link,
   // and opens the Cal.com pop-up once the embed script has loaded.
@@ -130,7 +190,7 @@
       });
       if (anyOk) {
         form.reset();
-        show("success", "Thank you — your message is in. We'll reply within one business day.");
+        show("success", "Thank you — your message is in. We'll get back to you as soon as possible.");
       } else {
         show("error", "Something went wrong sending your message. Please email us directly or book a call.");
       }

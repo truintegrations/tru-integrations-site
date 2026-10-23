@@ -4,7 +4,7 @@
 window.TRU_CONFIG = {
   // Your Cal.com booking link, WITHOUT "https://cal.com/".
   // e.g. "tru-integrations/discovery-call" or "yourname/30min"
-  calLink: "stephen-ponte-ipjj9o/30min",
+  calLink: "stephen-ponte-ipjj9o/discovery-call-15-min",
 
   // Optional: a webhook URL from Zapier, Make, n8n, etc.
   // When set, every contact-form submission is ALSO sent here as JSON.

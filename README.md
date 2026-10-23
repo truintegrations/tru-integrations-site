@@ -7,7 +7,7 @@ Static site with no build step. Hosted on Netlify.
 |---|---|
 | Cal.com booking link | `js/config.js` → `calLink` |
 | Optional webhook (Zapier/Make/n8n) | `js/config.js` → `webhookUrl` |
-| Email address | search all `.html` files for `hello@yourdomain.com` |
+| Email address | search all `.html` files for `stephen@truintegrations.com` |
 | Colors / fonts | top of `css/styles.css` |
 
 ## Contact form → automation
